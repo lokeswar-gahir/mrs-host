@@ -1,0 +1,53 @@
+{% extends 'base_auth.html' %}
+
+{% block pageTitle %}
+Admin
+{% endblock %}
+
+{% block navTitle %}
+All Users
+{% endblock %}
+
+{% block navButtons %}
+<a class="btn btn-outline-success text-nowrap me-2" href="/" role="button">Dashboard</a>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if users %}
+    <!-- <div class="table-responsive"> -->
+    <table class="table caption-top table-hover" style="max-width: 800px;">
+        <caption><h4>List of users</h4></caption>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">PassKey</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <th scope="row" class="num"></th>
+                    <td>{{user[0]}}</td>
+                    <td>{{user[1]}}</td>
+                    <td>{{user[2]}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<!-- </div> -->
+    {% endif %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+const divs = document.querySelectorAll(".num");
+let a=1;
+divs.forEach((i)=>{
+    i.innerText=a;
+    a+=1;
+})
+</script>
+{% endblock %}
