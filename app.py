@@ -13,6 +13,11 @@ import pymysql
 from datetime import timedelta, datetime
 from difflib import get_close_matches
 from pickle import load
+import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
+conn_string=os.getenv("CONN_STRING2")
 print("done.")
 
 movies_data = pd.read_csv("resources/movies_with_posters.csv")
@@ -79,7 +84,7 @@ def connect_db(use_cloud=False):
             global mongodb
             mongodb = True
             print("\nConnecting to MongoDB cloud...", end="")
-            mongodb_uri = "mongodb+srv://admin:admin@mycontacts.lcbszyg.mongodb.net/?retryWrites=true&w=majority&appName=myContacts"
+            mongodb_uri = conn_string
             client = MongoClient(mongodb_uri)
             global collection
             collection = client.movieRecommenderDB.registeredUsers
@@ -94,7 +99,8 @@ def connect_db(use_cloud=False):
             cursor = connection.cursor()
             print("done\n")
     except ConfigurationError as e:
-        print("\n\tERROR: Server not reachable !!!\n")
+        # print("\n\tERROR: Server not reachable !!!\n")
+        print(e)
         exit(0)
     except Exception as e:
         print("\n\tERROR: Some ERROR occured !!!\n"+str(e))
