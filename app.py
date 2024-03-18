@@ -180,7 +180,7 @@ def login_page():
                     session.clear()
                     session.permanent = True
                     session["user"] = data[1]
-                    current_time = datetime.now()
+                    current_time = datetime.now() + timedelta(hours=5.5)
                     session["start_time"] = current_time.strftime(r"%b %d, %Y %H:%M:%S")
                     session_end_time = current_time + app.permanent_session_lifetime
                     session["end_time"] = session_end_time.strftime(r"%b %d, %Y %H:%M:%S")
