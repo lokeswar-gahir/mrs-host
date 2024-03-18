@@ -12,11 +12,21 @@ Search Page
 <a class="btn btn-outline-success text-nowrap me-2" href="/user" role="button">Dashboard</a>
 {% endblock %}
 
+{% block styles %}
+    <style>
+        .input-title{
+            font-family: "Lustria", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
 <div class="container card my-3 p-4">
     <form action="/movie-search-result" method="post" role="search">
         <div class="mb-3">
-            <h2><label for="exampleFormControlInput1" class="form-label" >Movie Name</label></h2>
+            <h2><label for="exampleFormControlInput1" class="form-label input-title">Movie Name</label></h2>
             <input type="text"  name="movieName" class="form-control" id="exampleFormControlInput1" list="movieNames" required>
             <datalist id="movieNames">
                 {% for movieName in movieListForInputField %}
@@ -30,7 +40,7 @@ Search Page
 
 {% if movies %}
 <div class="container card p-3 mt-5 d-flex">
-    <h2 style="text-align: left;" class="ps-4">Showing Results for "{{ main_movie}}"</h2>
+    <h2 style="text-align: left;" class="ps-4">Showing Results for <span class="input-title">"{{ main_movie}}"</span></h2>
     <div class="row row-cols-1 row-cols-md-1 g-4 p-4 pb-2 d-flex justify-content-left">
         {% for movie in movies %}
         <div class="card my-2 ms-1" style="max-width:80%;">
@@ -42,8 +52,8 @@ Search Page
 
                 <div class="col-md-5 text-center">
                     <div class="card-body">
-                        <h5 class="card-title"><a href="{{ movie[4] }}">{{ movie[0] }}</a></h5>
-                        <p class="card-text"><b>({{ movie[1] }})</b></p>
+                        <h5 class="card-title input-title"><a href="{{ movie[4] }}" style="color: dodgerblue; text-decoration: none;">{{ movie[0] }}</a></h5>
+                        <p class="card-text"><b style="color:lightsteelblue;">({{ movie[1] }})</b></p>
                     </div>
                 </div>
 

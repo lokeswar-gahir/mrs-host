@@ -8,6 +8,16 @@
 Movie Recommendation Page
 {% endblock %}
 
+{% block styles %}
+    <style>
+        .input-title{
+            font-family: "Lustria", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+{% endblock %}
+
 {% block navButtons %}
 <div>
 <form action="/movie-search-result" method="post" class="d-flex" role="search">
@@ -34,7 +44,7 @@ Movie Recommendation Page
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h2 class="card-title">{{main_movie[0]}}</h2>
+          <h2 class="card-title input-title" style="font-weight: 600;"><a href="https://www.imdb.com/title/{{main_movie[3]}}" style="color: inherit; text-decoration: none;">{{main_movie[0]}}</a></h2>
           <pre>({{main_movie[3]}})</pre>
           <p class="card-text">{{main_movie[6]}}</p>
           <p class="card-text">{{main_movie[1]}}</p>
@@ -52,7 +62,7 @@ Movie Recommendation Page
   <div class="my-3">
     {% if movies %}
     <div>
-      <h2 class="ps-4 text-center mt-3">Recommended Movies <b>({{main_movie[0]}})</b></h2>
+      <h2 class="ps-4 text-center mt-3">Recommended Movies <b class="input-title" style="font-weight:600;">({{main_movie[0]}})</b></h2>
     </div>
     <div class="mt-3 row d-flex justify-content-center g-4">
       {% for movie in movies %}
@@ -62,7 +72,7 @@ Movie Recommendation Page
         <h1 class="card-title pe-2 mb-0 num" style="position:absolute; bottom: 0; right:0; color: #fff; font-weight:900; font-size:100px; text-shadow: 5px 3px 5px #000;"></h1>
         </div>
         <div class="card-body">
-          <h5 class="card-title">{{ movie[0]}}</h5>
+          <h5 class="card-title input-title"  style="font-weight: 600;">{{ movie[0]}}</h5>
           <pre>({{movie[3]}})</pre>
           <p class="card-text">{{ movie[1] }}</p>
         </div>

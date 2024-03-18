@@ -446,3 +446,4 @@ def all_users():
     else:
         flash("Access Denied !!!", "warning")
         return redirect(url_for("user_page"))
+    
