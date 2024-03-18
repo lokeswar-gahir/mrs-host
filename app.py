@@ -138,6 +138,8 @@ collection = None
 r=Reviews()
 a=Analyzer()
 
+connect_db(use_cloud=True)
+
 app=Flask(__name__)
 app.secret_key = "something"
 app.permanent_session_lifetime = timedelta(minutes=15)
@@ -438,7 +440,3 @@ def all_users():
     else:
         flash("Access Denied !!!", "warning")
         return redirect(url_for("user_page"))
-
-if __name__=="__main__":
-    connect_db(use_cloud=True)
-    app.run(debug=True)
